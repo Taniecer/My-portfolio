@@ -1,18 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color:Tomato;">
   <head>
+    <style>
+      .myDiv {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center; }
+  </style>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>  Taniece's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <div class="myDiv">
+      <h1 style="color: red" > All about Taniece </h1>
+      </div>
+      <p> Hello, My name is Taniece Ricketts. 
+          I attend the 
+          <a href="https://www.aamu.edu/about/index.html"> Alabama A&M Univeristy </a>
+          where I am a rising junior. 
+        </p>
+      <p>Click below to get a random fun fact about me:</p>
+      <button onclick="addRandomFact()"> Click Me!</button>
+      <div id= "fact-container"></div>
     </div>
   </body>
 </html>
