@@ -17,7 +17,7 @@
  */
 function addRandomFact() {
   const facts =
-      ['I am Jamaican', 'I am a virgo', ' I have been on Television before', 'I love the 90s movie Golden Girls']; 
+      ['I am a virgo '+ String.fromCodePoint(0x264d), ' I have been on Television before '+ String.fromCodePoint(0x1f4fa), 'I love the 90s show Golden Girls ' + String.fromCodePoint(0x1f475)]; 
 
   // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
