@@ -12,12 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
+
+// Assign emoji's hex code point to variable 
+const VIRGO_EMOJI = 0x264d;
+const TELEVISION_EMOJI=0x1f4fa;
+const OLD_WOMAN_EMOJI=0x1f475;
+
+/*
+ *Convert emoji to string
+ */
+function emojiString(emoji){
+    return String.fromCodePoint(emoji);
+}
+
+
 /**
- * Adds a random fact to the page.
+ * Adds a random fact and corresponding emoji to the page.
  */
 function addRandomFact() {
   const facts =
-      ['I am Jamaican', 'I am a virgo', ' I have been on Television before', 'I love the 90s movie Golden Girls']; 
+    ['I am a virgo '+ emojiString(VIRGO_EMOJI), ' I have been on Television before '+ emojiString(TELEVISION_EMOJI), 'I love the 90s show Golden Girls ' + emojiString(OLD_WOMAN_EMOJI)]; 
 
   // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];

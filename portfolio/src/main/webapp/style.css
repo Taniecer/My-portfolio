@@ -5,5 +5,33 @@
 }
 
 #fact-container {
-  margin-top: 20px;
+  margin-top: 80px;
+  margin-right: -220px;
+  border-radius: 50px;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  background-color: #4CAF50; 
+    padding: 20px;
+    font-size: 16px; 
+}
+
+#about-me {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+
+#button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+  float:right;
 }

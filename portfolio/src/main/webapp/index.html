@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html style="background-color:Tomato;">
   <head>
-    <style>
-      .about-me {
-  border: 5px outset red;
-  background-color: lightblue;    
-  text-align: center;
-}
-  </style>
     <meta charset="UTF-8">
     <title>  Taniece's Portfolio</title>
     <link rel="stylesheet" href="style.css">
@@ -15,21 +8,23 @@
   </head>
   <body>
       <img src="/Untitled/IMG_4578.jpeg" alt= "Taniece" 
-        style="float:left;width:265px;height:400px;"> 
+        style="float:left;width:265px;height:400px;"> </img>
+        
+      <button id="button"  type= " button" onclick="addRandomFact()"> Click Me for a random fun fact!</button>
+      <div style="float: right;" id= "fact-container"></div>
+
     <div id="content">
-    <div class="about-me">
-      <h1 style="color: red" > All about Taniece
-        </h1>
-      </div>
+    <div id="about-me">
+      <h1 style= "color:red;"> All about Taniece 
+      </h1>
+    </div>
       <p>   
           Hello, My name is Taniece Ricketts. 
           I attend the 
-          <a href="https://www.aamu.edu/about/index.html"> Alabama A&M Univeristy </a>
+          <a href="https://www.aamu.edu/about/index.html" target = "_blank"> Alabama A&M Univeristy </a>
           where I am a rising junior.
         </p>
-      <p>Click below to get a random fun fact about me:</p>
-      <button onclick="addRandomFact()"> Click Me!</button>
-      <div id= "fact-container"></div>
+    
     </div>
   </body>
 </html>
