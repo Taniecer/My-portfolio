@@ -26,3 +26,12 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
+
+/**
+ * Add greeting to the page 
+ */
+function getGreeting() {
+  fetch('/data').then(response => response.text()).then((greeting) => {
+    document.getElementById('greeting-container').innerText = greeting;
+  });
+}
