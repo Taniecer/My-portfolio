@@ -27,9 +27,21 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
-// Add greeting to the page
-function getGreeting() {
-  fetch('/data').then(response => response.text()).then((greeting) => {
-    document.getElementById('greeting-container').innerText = greeting;
-  });
+/**
+ * Fetch the list of comments and add them to the page
+ */
+function getComments(){
+fetch('/comments').then(response => response.json()).then((comments) => {
+const commentContainer = document.getElementById('comments-container');
+comments.forEach(function(comment) {
+commentContainer.appendChild(createListElement(comment))
+});
+});
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
