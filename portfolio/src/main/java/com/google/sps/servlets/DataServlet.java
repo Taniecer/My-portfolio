@@ -25,24 +25,22 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns  comments from the webpage.*/
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse 
-    response) throws IOException {
-        // Get the input from the form.
-        String comments = getParameter(request, "comments-container", "");
-        Gson gson = new Gson();
-        String json = gson.toJson(comments);
-        response.setContentType("application/json;");
-        response.getWriter().println(json);
-    }
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String comments = getParameter(request, "comments-container", "");
+    Gson gson = new Gson();
+    String json = gson.toJson(comments);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
 
     /**
     * @return the request parameter, or the default value if the parameter
     *         was not specified by the client
     */
-    private String getParameter(HttpServletRequest request, 
-    String name, String defaultValue) {
-        String value = request.getParameter(name);
-        return value == null ? defaultValue : value;
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+      String value = request.getParameter(name);
+      return value == null ? defaultValue : value;
     }
 }
