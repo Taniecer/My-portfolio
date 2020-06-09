@@ -30,7 +30,7 @@ function addRandomFact() {
 /**
  * Fetch the list of comments and add them to the page
  */
-function getComments(){
+function fetchAndAddComments(){
     fetch('/comments').then(response => response.json()).then((comments) => {
         const commentContainer = document.getElementById('comments-container');
         comments.forEach(function(comment) {
@@ -39,7 +39,7 @@ function getComments(){
     });
 }
 
-/** Creates an <li> element containing text. */
+/** Creates and returns an <li> element containing text. */
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
