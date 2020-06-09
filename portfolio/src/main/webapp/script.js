@@ -28,6 +28,7 @@ function addRandomFact() {
 }
 
 /**
+
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
