@@ -28,10 +28,21 @@ function addRandomFact() {
 }
 
 /**
- * Add greeting to the page 
+
+ * Fetch the list of comments and add them to the page
  */
-function getGreeting() {
-  fetch('/data').then(response => response.text()).then((greeting) => {
-    document.getElementById('greeting-container').innerText = greeting;
-  });
+function fetchAndAddComments(){
+    fetch('/comments').then(response => response.json()).then((comments) => {
+        const commentContainer = document.getElementById('comments-container');
+        comments.forEach(function(comment) {
+            commentContainer.appendChild(createListElement(comment))
+        });
+    });
+}
+
+/** Creates and returns an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
