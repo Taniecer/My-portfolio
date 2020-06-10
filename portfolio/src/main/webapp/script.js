@@ -32,12 +32,12 @@ function addRandomFact() {
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
-    fetch('/comments').then(response => response.json()).then((comments) => {
-        const commentContainer = document.getElementById('comments-container');
-        comments.forEach(function(comment) {
-            commentContainer.appendChild(createListElement(comment))
-        });
+  fetch('/comments').then(response => response.json()).then((comments) => {
+    const commentContainer = document.getElementById('comments-container');
+    comments.forEach(function(comment) {
+      commentContainer.appendChild(createListElement(comment))
     });
+  });
 }
 
 /** Creates and returns an <li> element containing text. */

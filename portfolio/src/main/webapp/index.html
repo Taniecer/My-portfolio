@@ -6,16 +6,27 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body id="background"; onload="fetchAndAddComments()">
-      <img src="/Untitled/IMG_4578.jpeg" alt= "Taniece" 
-        style="float:left;width:265px;height:400px;"> </img>
-      <button id="facts-button"  type= " button"
-       onclick="addRandomFact()"> Click Me for a random fun fact!</button>
-      <div style="float: right;" id= "fact-container"></div>
-    <div id="content">
-    <div id="about-me">
-      <h1 style= "color:red;"> All about Taniece </h1>
+  <body id="background" onload="getComments()">
+    <img src="/Untitled/IMG_4578.jpeg" alt= "Taniece" 
+    style="float:left;width:265px;height:400px;"> </img>
+    <button id="facts-button"  type= " button"
+    onclick="addRandomFact()"> Click Me for a random fun fact!</button>
+    <div style="float: right;" id= "fact-container"></div>
+
+    <div style= "float:right; border:1px solid #000; background-color: white;
+    margin-top: 320px; margin-right: -250px;">
+      <h1>Comments</h1>
+      <form action="/comments" method="POST">
+      <p style = "text-align: center">I would love to  hear from you.</p>
+      <textarea name="comments-container">Write a comment: </textarea>
+
+      <input type="submit"/>
+      </form> 
     </div>
+    <div id="content">
+      <div id="about-me">
+      <h1 style= "color:red;"> All about Taniece </h1>
+      </div>
       <p style="text-align:center"> <b>  
         Hello, My name is Taniece Ricketts. I am 19 years old. I was born 
         and raised on the beautiful island of Jamaica, in a small community 
@@ -27,8 +38,8 @@
         younger ones. My family has always been my support system and in 
         many ways they helped greatly to shape the young lady I am today. 
         </b> 
-        </p>
-        <p style="text-align:center"> <b>
+      </p>
+      <p style="text-align:center"> <b>
         <br><br><br><br><br><br><br>
         Three years ago, I migrated to the United States to further my educational 
         journey. I am currently a rising junior at the illustrious 
@@ -39,8 +50,7 @@
         In the future, I would like to become a Software Engineer at Google and work my way up 
         to Manager or even Director. Also, I aspire to travel the world.
         </b>
-        </p>
+      </p>
     </div>
-    <div id="comments-container"> </div>
   </body>
 </html>
