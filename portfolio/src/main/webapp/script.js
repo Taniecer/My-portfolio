@@ -32,17 +32,29 @@ function addRandomFact() {
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
-    fetch('/comments').then(response => response.json()).then((comments) => {
+    fetch('/comments').then(response => response.json()).then((comment) => {
         const commentContainer = document.getElementById('comments-container');
-        comments.forEach(function(comment) {
-            commentContainer.appendChild(createListElement(comment))
+        comment.forEach(function(comment) {
+            commentContainer.appendChild(createCommentElement(comment))
         });
     });
 }
 
-/** Creates and returns an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+/** Creates and returns a comment element containing  the components
+ of a comment. */
+function createCommentElement(comment) {  
+  const commentUsername = document.createElement('username');  
+  commentUsername.innerText = comment.username;
+
+  const commentDate = document.createElement('date');
+  commentDate.innerText = comment.date;
+
+  const commentText = document.createElement('comment');
+  commentText.innerText = comment;
+
+  const commentElement = document.createElement('element');
+  commentElement.appendChild(commentUsername);
+  commentElement.appendChild(commentDate);
+  commentElement.appendChild(comment);
+  return commentElement;
 }

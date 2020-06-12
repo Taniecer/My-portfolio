@@ -14,9 +14,18 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
+import java.util.Date;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,21 +34,46 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns  comments from the webpage.*/
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
+    
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    
+    Query query = new Query("comment");
+    query.addSort("date", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    List<Comment> commentList = new ArrayList<>();   
+    for (Entity commentEntity : results.asIterable()) {
+      commentList.add(Comment.fromEntity(commentEntity));
+    }
+    
+    Gson gson = new Gson();
+    String json = gson.toJson(commentList);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+    System.out.println("Comment list " + commentList);
+  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String comments = getParameter(request, "comments-container", "");
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    String username = request.getParameter("username");
+    String comment = request.getParameter("comment");
+
+    datastore.put(Comment.toEntity(new Comment(username, new Date(), comment)));
+    //response.sendRedirect("/index.html");
     Gson gson = new Gson();
-    String json = gson.toJson(comments);
+    String json = gson.toJson(comment);
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
-
+  
  /**
    * @return the request parameter, or the default value if the parameter
    *         was not specified by the client
-   */
+   
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     if (value == null) {
@@ -47,4 +81,6 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
+*/
+
 }

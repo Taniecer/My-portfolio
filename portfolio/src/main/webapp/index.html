@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body id="background"; onload="fetchAndAddComments()">
+  <body id="background"; onload="fetchAndAddComments()" >
       <img src="/Untitled/IMG_4578.jpeg" alt= "Taniece" 
         style="float:left;width:265px;height:400px;"> </img>
       <button id="facts-button"  type= " button"
@@ -16,13 +16,14 @@
         margin-right: -250px;">
     <h1>Comments</h1>
     <form action="/comments" method="POST">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br><br>
+      <label for="comment">Write a comment:</label><br>
+      <input type="text" id="comment" name="comment"><br><br>
 
-      <p style = "text-align: center">I would love to  hear from you.</p>
-      <textarea name="comments-container">Write a comment: </textarea>
-      <br/><br/>
-
-      <input type="submit"/>
+      <input type="submit" value="Post" >
       </form> 
+      <ul id="comments-container"></ul>
       </div>
     <div id="content">
     <div id="about-me">
