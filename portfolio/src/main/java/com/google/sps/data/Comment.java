@@ -4,12 +4,12 @@ import java.util.Date;
 import com.google.appengine.api.datastore.Entity;
 
 
-/** Class containing a user's comment. */
+/** Class that represents a user's comment. */
 public class Comment {
 
-  private final String username;
-  private final Date date;
-  private final String comment;
+  private String username;
+  private Date date;
+  private String comment;
 
   public Comment(String username, Date date, String comment ) {
     this.username = username;

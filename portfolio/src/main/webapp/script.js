@@ -28,7 +28,6 @@ function addRandomFact() {
 }
 
 /**
-
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
@@ -37,13 +36,13 @@ function fetchAndAddComments(){
   .then((comments) =>{
     const commentContainer = document.getElementById('comments-container');
     for (i in comments) {
-        commentContainer.appendChild(createCommentElement(comments[i]));
+      commentContainer.appendChild(createCommentElement(comments[i]));
     }
   });
 }
 
-/** Creates and returns a comment element containing  the components
- of a comment. 
+/** 
+ * Creates a <li> element containing the comment.
  */
 function createCommentElement(comment) { 
   const commentElement = document.createElement('li');
