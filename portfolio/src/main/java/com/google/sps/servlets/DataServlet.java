@@ -39,20 +39,19 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     
-    Query query = new Query("comment");
+    Query query = new Query("Comment");
     query.addSort("date", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
-
+    
     List<Comment> commentList = new ArrayList<>();   
     for (Entity commentEntity : results.asIterable()) {
       commentList.add(Comment.fromEntity(commentEntity));
     }
-    
+
     Gson gson = new Gson();
     String json = gson.toJson(commentList);
     response.setContentType("application/json;");
     response.getWriter().println(json);
-    System.out.println("Comment list " + commentList);
   }
 
   @Override
@@ -61,26 +60,12 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     String username = request.getParameter("username");
     String comment = request.getParameter("comment");
-
     datastore.put(Comment.toEntity(new Comment(username, new Date(), comment)));
-    //response.sendRedirect("/index.html");
+
     Gson gson = new Gson();
     String json = gson.toJson(comment);
     response.setContentType("application/json;");
     response.getWriter().println(json);
+    response.sendRedirect("/");
   }
-  
- /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  }
-*/
-
 }

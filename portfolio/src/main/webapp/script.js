@@ -32,29 +32,22 @@ function addRandomFact() {
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
-    fetch('/comments').then(response => response.json()).then((comment) => {
-        const commentContainer = document.getElementById('comments-container');
-        comment.forEach(function(comment) {
-            commentContainer.appendChild(createCommentElement(comment))
-        });
-    });
+  fetch('/comments')
+  .then(response => response.json())
+  .then((comments) =>{
+    const commentContainer = document.getElementById('comments-container');
+    for (i in comments) {
+        commentContainer.appendChild(createCommentElement(comments[i]));
+    }
+  });
 }
 
 /** Creates and returns a comment element containing  the components
- of a comment. */
-function createCommentElement(comment) {  
-  const commentUsername = document.createElement('username');  
-  commentUsername.innerText = comment.username;
-
-  const commentDate = document.createElement('date');
-  commentDate.innerText = comment.date;
-
-  const commentText = document.createElement('comment');
-  commentText.innerText = comment;
-
-  const commentElement = document.createElement('element');
-  commentElement.appendChild(commentUsername);
-  commentElement.appendChild(commentDate);
-  commentElement.appendChild(comment);
+ of a comment. 
+ */
+function createCommentElement(comment) { 
+  const commentElement = document.createElement('li');
+  commentElement.appendChild(document.createTextNode(comment['username']+ "\n"));
+  commentElement.appendChild(document.createTextNode(comment['comment'] + "\n"));
   return commentElement;
 }

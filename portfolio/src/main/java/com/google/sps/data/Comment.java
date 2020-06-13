@@ -4,8 +4,8 @@ import java.util.Date;
 import com.google.appengine.api.datastore.Entity;
 
 
-/** Class containing users comments and time. */
-public final class Comment {
+/** Class containing a user's comment. */
+public class Comment {
 
   private final String username;
   private final Date date;
@@ -15,7 +15,6 @@ public final class Comment {
     this.username = username;
     this.date = date;
     this.comment = comment;
-    
   }
 
   public String getUsername(){
@@ -47,7 +46,6 @@ public final class Comment {
    * @param {Comment} comment - the Comment object that will be made into an
    *     Entity.
    */
-
   public static Entity toEntity(Comment comment){
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("username", comment.username);
@@ -55,7 +53,5 @@ public final class Comment {
     commentEntity.setProperty("comment", comment.comment);
     return commentEntity;
   }
-
-
 }
 
