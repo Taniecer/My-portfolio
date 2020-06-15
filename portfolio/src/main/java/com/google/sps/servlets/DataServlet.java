@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
@@ -38,13 +39,15 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    
+    int maxCommentsToDisplay =  maxCommentsToDisplay(request);
+
     Query query = new Query("Comment");
     query.addSort("date", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
     
     List<Comment> commentList = new ArrayList<>();   
-    for (Entity commentEntity : results.asIterable()) {
+    for (Entity commentEntity : results.asIterable(
+      FetchOptions.Builder.withLimit(maxCommentsToDisplay))) {
       commentList.add(Comment.fromEntity(commentEntity));
     }
 
@@ -60,6 +63,7 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     String username = request.getParameter("username");
     String comment = request.getParameter("comment");
+
     datastore.put(Comment.toEntity(new Comment(username, new Date(), comment)));
 
     Gson gson = new Gson();
@@ -67,5 +71,21 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(json);
     response.sendRedirect("/");
+  }
+
+   /** Returns the max entered by the user, or default to 5. */
+  private int maxCommentsToDisplay(HttpServletRequest request) {
+    // Get the input from the form.
+    String maxCommentsString = request.getParameter("max-comments");
+
+    // Convert the input to an int.
+    int maxComment;
+    try {
+      maxComment = Integer.parseInt(maxCommentsString);
+    } 
+    catch (NumberFormatException e) {
+      maxComment = 5;
+    }
+    return maxComment;
   }
 }

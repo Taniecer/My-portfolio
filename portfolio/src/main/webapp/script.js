@@ -31,13 +31,16 @@ function addRandomFact() {
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
-  fetch('/comments')
+  const maxComments = parseInt(document.getElementById('max-comments').value);
+  fetch( '/comments?max-comments=' + maxComments )
   .then(response => response.json())
   .then((comments) =>{
     const commentContainer = document.getElementById('comments-container');
-    for (i in comments) {
+
+   commentContainer.innerHTML="";
+   for (i in comments) {
       commentContainer.appendChild(createCommentElement(comments[i]));
-    }
+      }
   });
 }
 
