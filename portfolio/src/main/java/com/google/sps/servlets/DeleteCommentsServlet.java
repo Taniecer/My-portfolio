@@ -4,9 +4,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
-
 import com.google.appengine.api.datastore.Query;
-
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +25,5 @@ public class DeleteCommentsServlet extends HttpServlet {
       datastore.delete(commentEntity.getKey());
     }
     response.setStatus(HttpServletResponse.SC_OK);
-
   }
 }
