@@ -63,7 +63,6 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     String username = request.getParameter("username");
     String comment = request.getParameter("comment");
-
     datastore.put(Comment.toEntity(new Comment(username, new Date(), comment)));
 
     Gson gson = new Gson();
@@ -79,7 +78,16 @@ public class DataServlet extends HttpServlet {
     String maxCommentsString = request.getParameter("max-comments");
 
     // Convert the input to an int.
-    int maxComment= Integer.parseInt(maxCommentsString);
+    int maxComment = Integer.parseInt(maxCommentsString);
     return maxComment;
   }
+
+    /**
+    * @return the request parameter, or the default value if the parameter
+    *         was not specified by the client
+    */
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+      String value = request.getParameter(name);
+      return value == null ? defaultValue : value;
+    }
 }

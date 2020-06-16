@@ -34,7 +34,7 @@ function fetchAndAddComments(){
   const maxComments = parseInt(document.getElementById('max-comments').value);
   fetch( '/comments?max-comments=' + maxComments )
   .then(response => response.json())
-  .then((comments) =>{
+  .then((comments) => {
     const commentContainer = document.getElementById('comments-container');
     commentContainer.innerHTML = "";
     comments.forEach(function(comment) {
