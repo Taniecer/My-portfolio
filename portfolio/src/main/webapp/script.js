@@ -53,3 +53,9 @@ function createCommentElement(comment) {
   commentElement.appendChild(document.createTextNode(comment['comment'] + "\n"));
   return commentElement;
 }
+
+/** Deletes all comments from webpage.
+ */
+function deleteComments(){
+    fetch('/delete-comments', {method: 'POST'});
+}
