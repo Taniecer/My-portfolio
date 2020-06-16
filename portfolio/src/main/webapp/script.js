@@ -28,21 +28,27 @@ function addRandomFact() {
 }
 
 /**
-
  * Fetch the list of comments and add them to the page
  */
 function fetchAndAddComments(){
-  fetch('/comments').then(response => response.json()).then((comments) => {
+  const maxComments = parseInt(document.getElementById('max-comments').value);
+  fetch( '/comments?max-comments=' + maxComments )
+  .then(response => response.json())
+  .then((comments) => {
     const commentContainer = document.getElementById('comments-container');
+    commentContainer.innerHTML = "";
     comments.forEach(function(comment) {
-      commentContainer.appendChild(createListElement(comment))
+      commentContainer.appendChild(createCommentElement(comment));
     });
   });
 }
 
-/** Creates and returns an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+/** 
+ * Creates a <li> element containing the comment.
+ */
+function createCommentElement(comment) { 
+  const commentElement = document.createElement('li');
+  commentElement.appendChild(document.createTextNode(comment['username']+ "\n"));
+  commentElement.appendChild(document.createTextNode(comment['comment'] + "\n"));
+  return commentElement;
 }
