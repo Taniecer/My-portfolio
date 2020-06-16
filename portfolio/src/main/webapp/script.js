@@ -48,7 +48,13 @@ function fetchAndAddComments(){
  */
 function createCommentElement(comment) { 
   const commentElement = document.createElement('li');
-  commentElement.appendChild(document.createTextNode(comment['username']+ "\n"));
+  commentElement.appendChild(document.createTextNode(comment['username']+ "-"+ "\n"));
   commentElement.appendChild(document.createTextNode(comment['comment'] + "\n"));
   return commentElement;
+}
+
+/** Deletes all comments from webpage.
+ */
+function deleteComments() {
+    fetch('/delete-comments', {method: 'POST'});
 }
