@@ -13,8 +13,8 @@
 }
 
 #fact-container {
-  margin-top: 240px;
-  margin-right: -250px;
+  margin-top: 480px;
+  margin-left: -250px;
   border-radius: 50px;
   display: inline-block;
   text-align: center;
@@ -38,8 +38,9 @@
   text-align: center;
   display: inline-block;
   font-size: 16px;
-  margin-top: 180px;
+  margin-top: 420px;
   cursor: pointer;
   border-radius: 50%;
-  float:right;
+  float:left;
+  margin-left: -250px;
 }
