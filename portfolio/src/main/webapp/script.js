@@ -36,11 +36,10 @@ function fetchAndAddComments(){
   .then(response => response.json())
   .then((comments) =>{
     const commentContainer = document.getElementById('comments-container');
-
-   commentContainer.innerHTML="";
-   for (i in comments) {
-      commentContainer.appendChild(createCommentElement(comments[i]));
-      }
+    commentContainer.innerHTML = "";
+    comments.forEach(function(comment) {
+      commentContainer.appendChild(createCommentElement(comment));
+    });
   });
 }
 
