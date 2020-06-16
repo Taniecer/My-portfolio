@@ -39,7 +39,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    int maxCommentsToDisplay =  maxCommentsToDisplay(request);
+    int maxCommentsToDisplay =  getMaxCommentsToDisplay(request);
 
     Query query = new Query("Comment");
     query.addSort("date", SortDirection.DESCENDING);
@@ -63,7 +63,6 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     String username = request.getParameter("username");
     String comment = request.getParameter("comment");
-
     datastore.put(Comment.toEntity(new Comment(username, new Date(), comment)));
 
     Gson gson = new Gson();
@@ -73,19 +72,22 @@ public class DataServlet extends HttpServlet {
     response.sendRedirect("/");
   }
 
-   /** Returns the max entered by the user, or default to 5. */
-  private int maxCommentsToDisplay(HttpServletRequest request) {
-    // Get the input from the form.
+   /** Returns the max entered by the user.
+    */
+  private int getMaxCommentsToDisplay(HttpServletRequest request) {
     String maxCommentsString = request.getParameter("max-comments");
 
     // Convert the input to an int.
-    int maxComment;
-    try {
-      maxComment = Integer.parseInt(maxCommentsString);
-    } 
-    catch (NumberFormatException e) {
-      maxComment = 5;
-    }
+    int maxComment = Integer.parseInt(maxCommentsString);
     return maxComment;
   }
+
+    /**
+    * @return the request parameter, or the default value if the parameter
+    *         was not specified by the client
+    */
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+      String value = request.getParameter(name);
+      return value == null ? defaultValue : value;
+    }
 }

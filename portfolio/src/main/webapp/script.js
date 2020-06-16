@@ -34,13 +34,12 @@ function fetchAndAddComments(){
   const maxComments = parseInt(document.getElementById('max-comments').value);
   fetch( '/comments?max-comments=' + maxComments )
   .then(response => response.json())
-  .then((comments) =>{
+  .then((comments) => {
     const commentContainer = document.getElementById('comments-container');
-
-   commentContainer.innerHTML="";
-   for (i in comments) {
-      commentContainer.appendChild(createCommentElement(comments[i]));
-      }
+    commentContainer.innerHTML = "";
+    comments.forEach(function(comment) {
+      commentContainer.appendChild(createCommentElement(comment));
+    });
   });
 }
 
